@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": "src",
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "target": "ES3"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts"]
+}
