@@ -1,0 +1,8 @@
+{
+	"private": true,
+	"scripts": {
+		"build": "tsc",
+		"clear": "rm -rfv dist",
+		"start": "yarn clear && yarn build && node dist/server"
+	}
+}
