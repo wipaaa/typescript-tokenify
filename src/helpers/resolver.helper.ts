@@ -2,10 +2,10 @@ import fs from 'fs';
 import path from 'path';
 
 class Resolver implements Resolver.Interface {
-  private directory: string = '';
+  private directory = '';
   private sources: Resolver.Sources = {};
 
-  from(directory: string): this {
+  from(directory: string) {
     if (!this._isExists(directory)) {
       const message = `Can't find directory at '${directory}'!`;
       throw new Error(message);
@@ -15,7 +15,7 @@ class Resolver implements Resolver.Interface {
     return this;
   }
 
-  resolve(): Resolver.Sources {
+  resolve() {
     if (!!!this.directory) {
       const message = `Can't read empty or null directory!`;
       throw new Error(message);
