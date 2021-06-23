@@ -5,6 +5,6 @@ declare namespace Tokenizer {
   }
 
   type Replacements = {
-    [key: string]: string | number | { [key: string]: string | number };
+    [key: string]: string | number | Replacements;
   };
 }
