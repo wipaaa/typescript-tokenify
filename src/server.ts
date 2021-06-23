@@ -1,11 +1,9 @@
 import app from './configs/express.config';
 import status from 'http-status';
 
-app.use('/', (req, res) => {
-  return res.status(status.OK).json({
-    message: '200 - You Are Accessing The API Main End Point!',
-  });
-});
+import APIV1Router from './api/routes/v1';
+
+app.use('/api/v1', APIV1Router);
 
 app.use((req, res, next) => {
   return res.status(status.NOT_FOUND).json({
