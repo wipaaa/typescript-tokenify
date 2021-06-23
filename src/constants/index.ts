@@ -1,3 +1,4 @@
 import env from './env.constant';
+import link from './link.constant';
 
-export { env };
+export { env, link };
