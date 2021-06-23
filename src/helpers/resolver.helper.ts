@@ -21,7 +21,7 @@ class Resolver implements Resolver.Interface {
       throw new Error(message);
     }
 
-    this._readDirectory((filePath) => {
+    this._readDirectory((filePath: string) => {
       const fileName = path.basename(filePath);
 
       return {
@@ -38,8 +38,8 @@ class Resolver implements Resolver.Interface {
     return fileName.replace('.txt', '.sol');
   }
 
-  private _getSourceContent(path: string) {
-    return fs.readFileSync(path, 'utf-8').toString();
+  private _getSourceContent(filePath: string) {
+    return fs.readFileSync(filePath, 'utf-8').toString();
   }
 
   private _isExists(directory: string) {
@@ -55,10 +55,10 @@ class Resolver implements Resolver.Interface {
     return result;
   }
 
-  private _readDirectory(callback: (path: string) => Resolver.Source) {
+  private _readDirectory(callback: (filePath: string) => Resolver.Source) {
     this.sources = fs
       .readdirSync(this.directory, 'utf-8')
-      .reduce((previous: Resolver.Sources, current) => {
+      .reduce((previous: Resolver.Sources, current: string) => {
         return {
           ...previous,
           [this._getSourceName(current)]: callback(
