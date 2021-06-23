@@ -47,12 +47,12 @@ class Compiler implements Compiler.Interface {
 
   private _getSources(): Compiler.Sources {
     return Object.entries(this._resolver.resolve()).reduce(
-      (previous, current): Compiler.Sources => {
-        const content = this._tokenizer.tokenize(current[1].content);
+      (previous: Compiler.Sources, [key, source]) => {
+        const content = this._tokenizer.tokenize(source.content);
 
         return {
           ...previous,
-          [current[0]]: { content },
+          [key]: { content },
         };
       },
       {}
@@ -60,14 +60,17 @@ class Compiler implements Compiler.Interface {
   }
 
   private _processOutput(output: SolcOutput): Compiler.Output {
-    return Object.entries(output.contracts!).reduce((previous, current) => {
-      const [name, data] = Object.entries(current[1])[0];
+    return Object.entries(output.contracts!).reduce(
+      (previous: Compiler.Output, [, contract]) => {
+        const [name, data] = Object.entries(contract)[0];
 
-      return {
-        ...previous,
-        [name]: data,
-      };
-    }, {});
+        return {
+          ...previous,
+          [name]: data,
+        };
+      },
+      {}
+    );
   }
 }
 

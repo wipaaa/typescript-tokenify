@@ -16,9 +16,7 @@ declare namespace Compiler {
 
   type Language = 'Solidity';
 
-  type Output = {
-    [key: string]: { [key: string]: { [key: string]: any } };
-  };
+  type Output = { [key: string]: string | number | boolean | Output };
 
   type Source = {
     content: string;
