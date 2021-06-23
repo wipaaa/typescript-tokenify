@@ -4,7 +4,7 @@ declare module 'solc' {
 
   const license: () => string;
   const version: () => string;
-  const compile: (input: string, callback: any) => string;
+  const compile: (input: string, callback?: any) => string;
   const loadRemoteVersion: (
     version: string,
     callback: (snapshot: any, error: any) => void
@@ -15,7 +15,7 @@ declare module 'solc' {
     lowlevel: LowLevel;
     license: () => string;
     version: () => string;
-    compile: (input: string, callback: any) => string;
+    compile: (input: string, callback?: any) => string;
     loadRemoteVersion: (
       version: string,
       callback: (snapshot: any, error: any) => void
@@ -32,9 +32,15 @@ declare module 'solc' {
   };
 
   type LowLevel = {
-    compileCallback: (input: string, optimize: boolean, callback: any) => any;
+    compileCallback: (input: string, optimize?: boolean, callback?: any) => any;
     compileMulti: any;
     compileSingle: any;
-    compileStandard: (input: string, callback: any) => any;
+    compileStandard: (input: string, callback?: any) => any;
+  };
+
+  type Output = {
+    errors?: { [key: string]: any }[];
+    sources?: { [key: string]: { id: number; ast: any } };
+    contracts?: { [key: string]: { [key: string]: any } };
   };
 }
